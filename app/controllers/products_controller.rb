@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def home
-    @products = Product.all
+    @products = Product.page(params[:page]).per(10);
   end
 
   def show
@@ -17,6 +17,8 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     @product.user = current_user
     if @product.save
+      mail = UserMailer.with(product: @product).product_created_email
+      mail.deliver_now
       redirect_to product_path(@product), notice: "Product listing was successfully created."
     else
       render :new, status: :unprocessable_entity
