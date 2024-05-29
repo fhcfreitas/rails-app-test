@@ -1,0 +1,18 @@
+<h1><%= @product.name %> </h1>
+
+<p>Description: <%= @product.description %></p>
+<p>Price: R$ <%= @product.price %></p>
+<p>Owner: <%= @product.user.name %></p>
+
+<%= link_to root_path do %>
+  <p><i class="fa-solid fa-rotate-left"></i>Back To Homepage</p>
+<% end %>
+
+<%= link_to edit_product_path do %>
+  <p><i class="fa-solid fa-pen"></i>Edit product</p>
+<% end %>
+
+<%= link_to product_path(@product),
+  data: {turbo_method: :delete, turbo_confirm: "Delete Product?"} do %>
+  <p><i class="fa-solid fa-trash"></i>Delete Product</p></p>
+<% end %>

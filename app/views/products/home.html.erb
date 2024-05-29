@@ -1,0 +1,16 @@
+<h1>Welcome to the Ecommerce</h1>
+<p>See all products</p>
+
+<% @products.each do |product| %>
+  <li><%= link_to "#{product.id} - #{product.name}", product_path(product) %></li>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= link_to new_product_path do %>
+    <p class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create New Product</p>
+  <% end %>
+<% else %>
+  <%= link_to new_user_session_path do %>
+    <p class="btn btn-primary"></i> Login to Register</p>
+  <% end %>
+<% end %>

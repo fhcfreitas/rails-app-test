@@ -1,0 +1,8 @@
+<h1>Edit <%= @product.name %></h1>
+<%= render "form", product: @product %>
+
+<div class="return row mt-3">
+  <%= link_to product_path(@product) do %>
+    <p><i class="fa-solid fa-rotate-left "></i>Back to Product Page</p>
+  <% end %>
+</div>
